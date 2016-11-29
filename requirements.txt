@@ -1,0 +1,3 @@
+pip==9.0.1
+curio==0.4
+curio-http==0.1.0

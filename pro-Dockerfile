@@ -1,0 +1,20 @@
+FROM alpine:3.4
+
+COPY ./wheels/ /wheels/
+
+RUN apk update && \
+    apk add \
+        --no-cache \
+        python3 && \
+    pyvenv /venv/impact && \
+    source /venv/impact/bin/activate && \
+    pip install \
+        --no-cache-dir \
+        --upgrade pip && \
+    pip install \
+        --no-cache-dir \
+        --find-links /wheels \
+        impact-python && \
+    rm -rf /wheels
+
+CMD ["/venv/impact/bin/python", "-m", "server"]
