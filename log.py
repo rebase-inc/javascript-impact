@@ -7,22 +7,22 @@ from logging import (
 )
 from logging.handlers import SysLogHandler
 from sys import stdout
-from os import environ
-from importlib import import_module
 
 
 RFC_SYSLOG_MAX_MSG_LENGTH = 1024
+
 
 class TruncatingLogRecord(LogRecord):
 
     def getMessage(self):
         return super(TruncatingLogRecord, self).getMessage()[:RFC_SYSLOG_MAX_MSG_LENGTH]
 
+
 def setup():
     root_logger = getLogger()
     root_logger.setLevel(DEBUG)
-    rsyslog = SysLogHandler(address = ('rsyslog', 514))
-    rsyslog.setFormatter(Formatter(fmt = '%(levelname)s {%(processName)s[%(process)d]} %(message).900s'))
+    rsyslog = SysLogHandler(address=('rsyslog', 514))
+    rsyslog.setFormatter(Formatter(fmt='%(levelname)s {%(processName)s[%(process)d]} %(message).900s'))
     root_logger.addHandler(rsyslog)
     from platform import python_version_tuple
     major, minor, _ = python_version_tuple()
@@ -36,8 +36,6 @@ def setup():
         from logging import setLogRecordFactory
         setLogRecordFactory(TruncatingLogRecord)
     root_logger.debug('Root logger is setup')
-    getLogger('boto3').setLevel('WARNING')
-    getLogger('botocore').setLevel('INFO')
 
 
 def log_to_stdout():
