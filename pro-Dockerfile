@@ -14,7 +14,7 @@ RUN apk update && \
     pip install \
         --no-cache-dir \
         --find-links /wheels \
-        impact-python && \
+        impact-javascript && \
     rm -rf /wheels
 
-CMD ["/venv/impact/bin/python", "-m", "impact-python.server"]
+CMD ["/venv/impact/bin/python", "-m", "impact-javascript.server"]

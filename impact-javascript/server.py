@@ -7,7 +7,7 @@ from sys import exit
 from curio import run, tcp_server
 from curio_http import ClientSession
 
-from log import setup
+from .log import setup
 
 
 current_process().name = 'impact-javascript'
