@@ -5,6 +5,7 @@ COPY ./wheels/ /wheels/
 RUN apk update && \
     apk add \
         --no-cache \
+        ca-certificates \
         python3 && \
     pyvenv /venv/impact && \
     source /venv/impact/bin/activate && \
