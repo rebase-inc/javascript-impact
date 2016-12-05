@@ -18,4 +18,6 @@ RUN apk update && \
         impact-javascript && \
     rm -rf /wheels
 
+ENV LOG_LEVEL INFO
+
 CMD ["/venv/impact/bin/python", "-m", "impact-javascript.server"]

@@ -17,4 +17,6 @@ WORKDIR /code
 
 EXPOSE 25000
 
+ENV LOG_LEVEL DEBUG
+
 CMD ["/venv/impact/bin/python", "-m", "server"]

@@ -3,9 +3,9 @@ from logging import (
     Formatter,
     LogRecord,
     StreamHandler,
-    DEBUG
 )
 from logging.handlers import SysLogHandler
+from os import environ as env
 from sys import stdout
 
 
@@ -20,7 +20,8 @@ class TruncatingLogRecord(LogRecord):
 
 def setup():
     root_logger = getLogger()
-    root_logger.setLevel(DEBUG)
+    level = env['LOG_LEVEL'] if 'LOG_LEVEL' in env else 'DEBUG'
+    root_logger.setLevel(level)
     rsyslog = SysLogHandler(address=('rsyslog', 514))
     rsyslog.setFormatter(Formatter(fmt='%(levelname)s {%(processName)s[%(process)d]} %(message).900s'))
     root_logger.addHandler(rsyslog)
