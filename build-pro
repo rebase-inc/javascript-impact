@@ -36,6 +36,8 @@ cp -r /wheelhouse/wheels /tmp/impact_javascript/.
 
 docker build -t rebase/pro-impact-javascript /tmp/impact_javascript
 
+docker tag rebase/pro-impact-javascript alpha.rebaseapp.com:5000/rebase/pro-impact-javascript
+
 rm -rf /tmp/impact_javascript
 
 deactivate
