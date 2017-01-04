@@ -13,6 +13,7 @@ from asynctcp import AsyncTcpCallbackServer
 current_process().name = os.environ['HOSTNAME']
 rsyslog.setup(log_level = os.environ['LOG_LEVEL'])
 LOGGER = logging.getLogger()
+logging.getLogger('curio_http').setLevel(logging.WARNING)
 
 async def get_downloads(json_request):
     async with ClientSession() as session:
