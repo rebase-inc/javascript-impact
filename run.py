@@ -1,5 +1,6 @@
 import os
 import json
+import errno
 import base64
 import logging
 
