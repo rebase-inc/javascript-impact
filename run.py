@@ -33,4 +33,4 @@ async def get_downloads(json_request):
         return json.dumps(data)
 
 if __name__ == '__main__':
-    AsyncTcpCallbackServer('0.0.0.0', 9999, 'run.get_downloads', memoized = True).run()
+    AsyncTcpCallbackServer('0.0.0.0', 9999, 'run.get_downloads', memoized = True, search_path = '/').run()
