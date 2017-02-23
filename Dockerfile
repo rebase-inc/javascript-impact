@@ -1,4 +1,4 @@
-FROM alpine
+FROM python:alpine
 
 ARG PYTHON_COMMONS_HOST
 ARG PYTHON_COMMONS_SCHEME
@@ -9,9 +9,8 @@ COPY ./requirements.txt /requirements.txt
 RUN apk --quiet update && \
     apk --quiet add \
         --no-cache \
-        ca-certificates \
-        python3 && \
-    pyvenv /venv && \
+        ca-certificates && \
+    python3.6 -m venv /venv && \
     source /venv/bin/activate && \
     pip --quiet install \
         --no-cache-dir \
